@@ -78,13 +78,13 @@ def main():
     combined_data = aqi_data.join(weather_data, how="inner")
 
     # Debugging: Check the columns of combined_data
-    st.write("Columns in combined_data:", combined_data.columns.tolist())
+    # st.write("Columns in combined_data:", combined_data.columns.tolist())
 
     # Reset the index to ensure 'dt' is accessible
     combined_data.reset_index(inplace=True)
 
     # Check the DataFrame after reset
-    st.write("DataFrame after reset index:\n", combined_data.head())
+    # st.write("DataFrame after reset index:\n", combined_data.head())
 
     # Rename the 'index' column to 'dt' for clarity
     combined_data.rename(columns={'index': 'dt'}, inplace=True)
@@ -94,7 +94,7 @@ def main():
     combined_data = combined_data[combined_data['dt'] >= three_days_ago]
 
     # Check the filtered DataFrame
-    st.write("Filtered DataFrame:\n", combined_data)
+    # st.write("Filtered DataFrame:\n", combined_data)
 
     # Set the index back to 'dt' for further processing
     combined_data.set_index('dt', inplace=True)
@@ -154,7 +154,7 @@ def main():
     st.write(f"R² Score: {r2:.2f}")
 
     # Display predicted AQI data
-    st.subheader("Predicted AQI for the Next 3 Days")
+    st.subheader("Predicted AQI for the Recent 3 Days")
     predictions = pd.DataFrame({
         "Date & Time": combined_data.index[:-1],
         "True AQI": y_true,
